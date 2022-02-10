@@ -83,6 +83,7 @@ bool MessageState::parse(uint64_t sec, uint8_t * dat) {
     }
 
     vals[i] = tmp * sig.factor + sig.offset;
+    all_vals[i].push_back(vals[i]);
   }
   seen = sec;
 
@@ -147,6 +148,7 @@ CANParser::CANParser(int abus, const std::string& dbc_name,
       if (sig->type != SignalType::DEFAULT) {
         state.parse_sigs.push_back(*sig);
         state.vals.push_back(0);
+        state.all_vals.push_back({});
       }
     }
 
@@ -160,6 +162,7 @@ CANParser::CANParser(int abus, const std::string& dbc_name,
             && sig->type == SignalType::DEFAULT) {
           state.parse_sigs.push_back(*sig);
           state.vals.push_back(0);
+          state.all_vals.push_back({});
           break;
         }
       }
@@ -188,6 +191,7 @@ CANParser::CANParser(int abus, const std::string& dbc_name, bool ignore_checksum
       const Signal *sig = &msg->sigs[j];
       state.parse_sigs.push_back(*sig);
       state.vals.push_back(0);
+      state.all_vals.push_back({});
     }
 
     message_states[state.address] = state;
@@ -209,7 +213,7 @@ void CANParser::update_string(const std::string &data, bool sendcan) {
 
   last_sec = event.getLogMonoTime();
 
-  auto cans = sendcan? event.getSendcan() : event.getCan();
+  auto cans = sendcan ? event.getSendcan() : event.getCan();
   UpdateCans(last_sec, cans);
 
   UpdateValid(last_sec);
@@ -292,7 +296,9 @@ std::vector<SignalValue> CANParser::query_latest() {
         .address = state.address,
         .name = sig.name,
         .value = state.vals[i],
+        .all_values = state.all_vals[i],
       });
+      //state.all_vals[i].clear();
     }
   }
 
