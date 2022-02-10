@@ -286,11 +286,11 @@ void CANParser::UpdateValid(uint64_t sec) {
 std::vector<SignalValue> CANParser::query_latest() {
   std::vector<SignalValue> ret;
 
-  for (const auto& kv : message_states) {
-    const auto& state = kv.second;
+  for (auto& kv : message_states) {
+    auto& state = kv.second;
     if (last_sec != 0 && state.seen != last_sec) continue;
 
-    for (int i=0; i<state.parse_sigs.size(); i++) {
+    for (int i = 0; i < state.parse_sigs.size(); i++) {
       const Signal &sig = state.parse_sigs[i];
       ret.push_back((SignalValue){
         .address = state.address,
@@ -298,7 +298,7 @@ std::vector<SignalValue> CANParser::query_latest() {
         .value = state.vals[i],
         .all_values = state.all_vals[i],
       });
-      //state.all_vals[i].clear();
+      state.all_vals[i].clear();
     }
   }
 

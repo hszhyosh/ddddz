@@ -18,31 +18,6 @@ from collections import defaultdict
 cdef int CAN_INVALID_CNT = 5
 
 
-"""
-cdef class AllValues:
-  cdef:
-    map[string, uint32_t] msg_name_to_address
-    vector[vector[SignalValue]] can_values
-
-  def __init__ (self, map[string, uint32_t] msg_name_to_address, vector[vector[SignalValue]] can_values):
-    #self.msg_name_to_address = msg_name_to_address
-    #self.can_values = can_values
-    pass
-
-  def __getitem__(self, addr):
-    if not isinstance(addr, numbers.Number):
-      addr = self.msg_name_to_address(addr.encode('utf8'))
-
-    # TODO: make sure the order is correct
-    ret = defaultdict(list)
-    for vals in self.can_values:
-      for cv in vals:
-        cv_name = <unicode>cv.name
-        ret[cv_name].append(cv.value)
-    return ret
-"""
-
-
 cdef class CANParser:
   cdef:
     cpp_CANParser *can
@@ -71,8 +46,6 @@ cdef class CANParser:
     self.vl_all = {}
     self.can_valid = False
     self.can_invalid_cnt = CAN_INVALID_CNT
-
-    #self.all_values = AllValues(self.msg_name_to_address, self.can_values)
 
     cdef int i
     cdef int num_msgs = self.dbc[0].num_msgs

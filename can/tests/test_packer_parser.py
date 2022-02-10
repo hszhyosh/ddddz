@@ -135,18 +135,21 @@ class TestCanParserPacker(unittest.TestCase):
     # Make sure nothing is updated
     self.assertEqual(len(parser.vl_all["VSA_STATUS"]["USER_BRAKE"]), 0)
 
-    # Ensure CANParser holds the values of any duplicate messages
-    user_brake_vals = [4, 5, 6, 7]
-    msgs = []
-    for user_brake in user_brake_vals:
-      values = {"USER_BRAKE": user_brake}
-      msgs.append(packer.make_can_msg("VSA_STATUS", 0, values))
+    idx = 0
+    for _ in range(10):
+      # Ensure CANParser holds the values of any duplicate messages
+      user_brake_vals = [4, 5, 6, 7]
+      msgs = []
+      for user_brake in user_brake_vals:
+        values = {"USER_BRAKE": user_brake}
+        msgs.append(packer.make_can_msg("VSA_STATUS", 0, values, idx))
+        idx += 1
 
-    parser.update_strings([can_list_to_can_capnp(msgs)])
-    vl_all = parser.vl_all["VSA_STATUS"]["USER_BRAKE"]
+      parser.update_strings((can_list_to_can_capnp(msgs), ))
+      vl_all = parser.vl_all["VSA_STATUS"]["USER_BRAKE"]
 
-    self.assertEqual(vl_all, user_brake_vals)
-    self.assertEqual(vl_all[-1], parser.vl["VSA_STATUS"]["USER_BRAKE"])
+      self.assertEqual(vl_all, user_brake_vals)
+      self.assertEqual(vl_all[-1], parser.vl["VSA_STATUS"]["USER_BRAKE"])
 
 
 if __name__ == "__main__":
