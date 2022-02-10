@@ -124,12 +124,13 @@ cdef class CANParser:
     return updated_addrs
 
   def update_string(self, dat, sendcan=False):
-    #self.can_values.clear()
+    for v in self.vl_all.values():
+      v.clear()
+
     self.can.update_string(dat, sendcan)
     return self.update_vl()
 
   def update_strings(self, strings, sendcan=False):
-    #self.can_values.clear()
     for v in self.vl_all.values():
       v.clear()
 
