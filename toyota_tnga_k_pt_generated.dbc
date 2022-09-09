@@ -261,6 +261,12 @@ BO_ 1041 ACC_HUD: 8 DSU
  SG_ SET_ME_X10 : 39|8@0+ (1,0) [0|1] "" XXX
  SG_ PCS_OFF : 40|1@0+ (1,0) [0|0] "" XXX
  SG_ PCS_SENSITIVITY : 55|8@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_1 : 23|8@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_2 : 31|8@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_3 : 47|7@0+ (1,0) [0|127] "" XXX
+ SG_ NEW_SIGNAL_4 : 63|8@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_5 : 3|4@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_6 : 5|1@0+ (1,0) [0|1] "" XXX
 
 BO_ 1042 LKAS_HUD: 8 DSU
  SG_ BARRIERS : 1|2@0+ (1,0) [0|3] "" XXX
@@ -288,6 +294,12 @@ BO_ 1042 LKAS_HUD: 8 DSU
  SG_ LANE_SWAY_WARNING : 55|2@0+ (1,0) [0|3] "" XXX
  SG_ SET_ME_X01 : 42|1@0+ (1,0) [0|1] "" XXX
  SG_ SET_ME_X02 : 63|8@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_1 : 11|1@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_2 : 23|2@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_3 : 29|6@0+ (1,0) [0|7] "" XXX
+ SG_ NEW_SIGNAL_4 : 39|7@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_5 : 41|2@0+ (1,0) [0|1] "" XXX
+ SG_ NEW_SIGNAL_6 : 48|1@0+ (1,0) [0|1] "" XXX
 
 BO_ 1043 TIME : 8 CGW
  SG_ YEAR : 7|8@0+ (1,0) [0|0] "year" XXX
