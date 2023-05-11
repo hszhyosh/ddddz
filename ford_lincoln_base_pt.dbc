@@ -2288,6 +2288,9 @@ BO_ 514 EngVehicleSpThrottle2: 8 PCM_HEV
  SG_ Veh_V_ActlEng : 55|16@0+ (0.01,0) [0|655.35] "kph"  VDM,SOBDMC_HPCM_FD1,IPMA_ADAS,ABS_ESC,PSCM,TCM_DSL,GWM
  SG_ GearRvrse_D_Actl : 4|3@0+ (1,0) [0|7] "SED"  CMR_DSMC,IPMA_ADAS,ABS_ESC,PSCM,GWM
  SG_ StrtrMtrCtlMsgTxt_D2_Rq : 1|2@0+ (1,0) [0|3] "SED"  GWM
+ SG_ NEW_SIGNAL_1 : 18|3@0+ (1,0) [0|7] "" XXX
+ SG_ NEW_SIGNAL_2 : 31|8@0+ (1,0) [0|255] "" XXX
+ SG_ NEW_SIGNAL_3 : 36|4@0+ (1,0) [0|15] "" XXX
 
 BO_ 512 TorqueDataEngFlags: 8 PCM_HEV
  SG_ PrplWhlTotTqRq_No_Cs : 63|8@0+ (1,0) [0|255] "Unitless"  ABS_ESC,GWM
